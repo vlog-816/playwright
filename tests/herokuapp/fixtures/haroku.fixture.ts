@@ -3,12 +3,14 @@ import { CheckboxPage } from '../pages/CheckboxPage.page';
 import { HorizoltalSliderPage } from './../pages/HorizoltalSliderPage';
 import { test as base, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage.page';
+import { DropdownPage } from '../pages/DropdownPage.page';
 
 type HarokuPages = {
     loginPage: LoginPage,
     horizoltalSliderPage: HorizoltalSliderPage,
     checkboxPage: CheckboxPage,
-    tablePage: TablePage
+    tablePage: TablePage,
+    dropdownPage: DropdownPage
 }
 
 export const test = base.extend<HarokuPages>({
@@ -28,7 +30,12 @@ export const test = base.extend<HarokuPages>({
         const tablePage = new TablePage(page);
         await tablePage.goto();
         await use(tablePage);
+    },
+
+    dropdownPage: async ({ page }, use) => {
+        await use(new DropdownPage(page));
     }
+
 })
 
 export { expect } 
